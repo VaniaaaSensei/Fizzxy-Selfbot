@@ -109,7 +109,7 @@ Fizzxy.user :
 return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
 }
 
-Fizzxy.public = false
+Fizzxy.public = true
 
 Fizzxy.serializeM = (m) => smsg(Fizzxy, m, store);
 Fizzxy.ev.on('connection.update', (update) => {

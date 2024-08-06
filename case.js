@@ -838,6 +838,7 @@ fbutton(teksooo)
 }
 break
 case 'delvn':{
+if (!isCreator) return fbutton("Akses di tolak kamu bukan ownerku ")
 if (args.length < 1) return fbutton('Masukan query')
 if (!vnnye.includes(text)) return fbutton("Nama tersebut tidak ada di dalam data base")
 let wanu = vnnye.indexOf(text)
@@ -848,6 +849,7 @@ fbutton(`Sukses delete vn ${text}`)
 }
 break
 case 'addvn':{
+if (!isCreator) return fbutton("Akses di tolak kamu bukan ownerku ")
 if (args.length < 1) return reply('Nama lagu?')
 if (vnnye.includes(text)) return reply("Nama tersebut sudah di gunakan")
 let delb = await Fizzxy.downloadAndSaveMediaMessage(quoted)
@@ -860,6 +862,7 @@ fbutton(`Sukses Menambahkan Audio\nCek dengan cara ${prefix}listvn`)
 break
 
 case 'listapikey': case 'apikey': {
+if (!isCreator) return fbutton("Akses di tolak kamu bukan ownerku ")
 var apikeyy = `\`APIKEY Fizzxy Dev\`
 
 _Website_ : https://api.elxyz.me/
@@ -933,6 +936,7 @@ mentionedJid: [sender]
         break;
 
 case 'cekcase': {
+if (!isCreator) return fbutton("Akses di tolak kamu bukan ownerku ")
 if (!text) return m.reply(`Contoh: ${prefix+command} caseName`);
 const caseName = text.trim();
 if (!caseName) return m.reply(`Masukkan nama case yang ingin dicek. Contoh: ${prefix+command} caseName`);
@@ -983,6 +987,7 @@ break;
 
 case 'cekfunc':
 case 'cekfunction': {
+if (!isCreator) return fbutton("Akses di tolak kamu bukan ownerku ")
 if (!text) return m.reply(`Contoh: ${prefix+command} functionName`);
 const functionName = text.trim();
 if (!functionName) return m.reply(`Masukkan nama function yang ingin dicek. Contoh: ${prefix+command} functionName`);
@@ -1031,7 +1036,7 @@ m.reply(`Function '${functionName}' tidak ditemukan.`);
 }
 break;
 
-case "fizz": {
+case "fizz": case "menu": {
 var no = 1
 var aa = `_*Hay @${sender.split("@")[0]} ${ucapin}*_
 
@@ -1103,7 +1108,6 @@ const isBotMention = mention.includes(botNumber);
 let isBaileys = m.key.id?.startsWith('BAE5') && m.key.id?.length === 16
 
 if (!isBotMention) return
-if (isBaileys) return
 /*async function transcribe(buffer) {
   try {
     let response = await fetch(`${api.xterm.url}/api/audioProcessing/transcribe?key=${api.xterm.key}`, {
@@ -1185,6 +1189,14 @@ newsletterJid: "120363265749564412@newsletter"}
 }},{quoted: m })
 }) 
             break
+            case 'voice': {
+            try {
+let pissyy = "https://telegra.ph/file/235e23ec4c179d545619b.jpg"
+await Fizzxy.sendMessage(m.chat, { audio: { url: `https://ai.xterm.codes/api/text2speech/bella?key=Bell409&text=${data.msg}`}, mimetype: "audio/mpeg", ptt: true}, { quoted: m })
+} catch (e) {
+m.reply(e) 
+}
+} break
             case 'public':
 if (!isCreator) return fbutton("Khusus Fizzxy Ganteng 😉") 
 Fizzxy.public = true
